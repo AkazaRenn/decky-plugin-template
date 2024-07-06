@@ -8,6 +8,9 @@ import asyncio
 
 class Plugin:
     # A normal method. It can be called from the TypeScript side using @decky/api.
+    async def test(self):
+        return {"pauseBeforeSuspend": True, "autoPause": True, "overlayPause": True, "noAutoPauseSet": [367520]}
+
     async def add(self, left: int, right: int) -> int:
         return left + right
 

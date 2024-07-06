@@ -9,6 +9,7 @@ import {
 import {
   addEventListener,
   removeEventListener,
+  call,
   callable,
   definePlugin,
   toaster,
@@ -24,14 +25,22 @@ import { FaShip } from "react-icons/fa";
 //   left: number;
 //   right: number;
 // }
-const add = callable<[first: number, second: number], number>("add");
+// const add = callable<[first: number, second: number], number>("add");
 const startTimer = callable<[], void>("start_timer");
+const test = callable<[], any>("test");
+
 function Content() {
   const [result, setResult] = useState<number | undefined>();
 
   const onClick = async () => {
-    const result = await add(Math.random(), Math.random());
-    setResult(result);
+    let result;
+    console.log("Using call");
+    result = await call<[], any>("test");
+    console.log("call result", result);
+    console.log("Using callable");
+    result = await test();
+    console.log("callable result", result);
+    setResult(result.toString());
   };
 
   return (
